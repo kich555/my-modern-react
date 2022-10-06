@@ -1,16 +1,33 @@
-import { StrictMode } from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import { useLocation, createRoutesFromChildren, useNavigationType, matchRoutes, Routes } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { NotificationsProvider } from '@mantine/notifications';
+import { MantineProvider } from '@mantine/core';
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+import reportWebVitals from './reportWebVitals';
+import App from './App';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+});
+
+const root = ReactDOM.createRoot(document.getElementById('kich') as HTMLElement);
 
 root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <MantineProvider withGlobalStyles withNormalizeCSS>
+        <NotificationsProvider>
+          <App />
+        </NotificationsProvider>
+      </MantineProvider>
+    </QueryClientProvider>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

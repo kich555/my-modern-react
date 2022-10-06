@@ -1,0 +1,63 @@
+{
+  "extends": ["react-app", "plugin:react-hooks/recommended", "plugin:import/errors", "plugin:import/warnings", "plugin:@typescript-eslint/recommended", "plugin:react/recommended", "prettier"],
+  "plugins": ["@typescript-eslint"],
+  "parserOptions": {
+    "project": ["tsconfig.json"]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "rules": {
+    // "react-hooks/exhaustive-deps": "error",
+    "import/prefer-default-export": "off",
+    "implicit-arrow-linebreak": "warn",
+    "operator-linebreak": "warn",
+    "@typescript-eslint/no-use-before-define": "warn",
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "react/require-default-props": "warn",
+    "jsx-quotes": "warn",
+    "no-nested-ternary": "warn",
+    "prettier/prettier": ["off", {}, { "usePrettierrc": true }],
+    "arrow-body-style": "warn",
+    "prefer-arrow-callback": "warn",
+    "@typescript-eslint/indent": "off",
+    "no-confusing-arrow": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "warn",
+    "function-paren-newline": "warn",
+    "@typescript-eslint/no-namespace": "warn",
+    "object-curly-newline": "warn",
+    "react/jsx-curly-newline": "off",
+    "no-bitwise": ["error", { "allow": ["~"] }],
+    "no-continue": "warn",
+    "react/jsx-wrap-multilines": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "react/prop-types": "warn",
+    "global-require": "warn",
+    "no-tabs": ["error", { "allowIndentationTabs": true }],
+    "no-param-reassign": ["warn", { "props": true, "ignorePropertyModificationsFor": ["draft"] }],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "memberLike",
+        "modifiers": ["private"],
+        "format": ["camelCase"],
+        "leadingUnderscore": "allowSingleOrDouble"
+      }
+    ],
+    "no-underscore-dangle": "warn",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["builtin", "external"],
+          ["index", "sibling", "parent", "internal", "object", "type"]
+        ]
+      }
+    ]
+    // "import/no-unresolved": [2, { "caseSensitive": false }]
+  }
+}
