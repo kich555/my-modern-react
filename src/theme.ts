@@ -1,7 +1,19 @@
-import { ListItemProps, MantineThemeOverride } from '@mantine/core';
+import { ListItemProps, MantineThemeOverride, SkeletonProps } from '@mantine/core';
 
 const ListDefaultProps: Partial<ListItemProps> = {
   styles: { itemWrapper: { width: '100%' } },
+};
+
+const SkeletonDefaultProps: Partial<SkeletonProps> = {
+  sx: theme => ({
+    backgroundColor: theme.colors.dark[7],
+    '&:after': {
+      backgroundColor: theme.colors.dark[7],
+    },
+    '&:before': {
+      backgroundColor: theme.colors.dark[7],
+    },
+  }),
 };
 
 export const theme: MantineThemeOverride = {
@@ -15,12 +27,10 @@ export const theme: MantineThemeOverride = {
     color: 'rgba(255, 255, 255, 0.87)',
     fontSynthesis: 'none',
     textRendering: 'optimizeLegibility',
-    // -webkit-font-smoothing: antialiased,
-    // -moz-osx-font-smoothing: grayscale,
-    // -webkit-text-size-adjust: 100%,
   }),
 
   components: {
     List: { defaultProps: ListDefaultProps },
+    Skeleton: { defaultProps: SkeletonDefaultProps },
   },
 };

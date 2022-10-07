@@ -2,8 +2,11 @@ import { List } from '@mantine/core';
 import { NavLink } from 'react-router-dom';
 
 import classes from './MainNavigation.module.css';
+import { prefetchTodos } from './prefetch/apis';
 
 function MainNavigation() {
+  const handlePrefetch = () => prefetchTodos();
+
   return (
     <header className={classes.header}>
       <nav>
@@ -13,7 +16,7 @@ function MainNavigation() {
               Home
             </NavLink>
           </List.Item>
-          <List.Item>
+          <List.Item onMouseEnter={handlePrefetch}>
             <NavLink to="/blog" className={({ isActive }) => (isActive ? classes.active : undefined)} end>
               List
             </NavLink>

@@ -1,4 +1,5 @@
 import invariant from 'tiny-invariant';
+import { useQuery, UseQueryOptions } from 'react-query';
 import { sleep } from 'utils/sleep';
 import request from './request';
 
@@ -54,24 +55,25 @@ const config = {
 export const postTestRequest = async () => request({ method: 'post', url: '/posts', data, config });
 
 export async function getPosts() {
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-  if (!response.ok) {
+  const response = await request({ url: '/posts' });
+  console.log('response', response);
+  if (!response) {
     throw new Response('Failed to fetch posts.', { status: 500 });
   }
-  return response.json();
+  return response.data;
 }
 
 export async function getSlowPosts() {
   await sleep(2000);
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-  if (!response.ok) {
+  const response = await request({ url: '/posts' });
+  if (!response) {
     throw new Response('Failed to fetch posts.', { status: 500 });
   }
   return response.json();
 }
 
 export async function getPost(id: string) {
-  return fetch('https://jsonplaceholder.typicode.com/posts/' + id);
+  return request({ url: `/posts/${id}` });
 }
 
 export async function savePost(data: FormData) {
@@ -86,16 +88,20 @@ export async function savePost(data: FormData) {
     return { isError: true, message: 'Invalid input data provided.', status: 401 };
   }
 
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-    method: 'POST',
-    body: JSON.stringify(post),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  const response = await request({ method: 'post', url: '/posts', data: { post } });
 
-  if (!response.ok) {
+  // const response = await fetch('/posts', {
+  //   method: 'POST',
+  //   body: JSON.stringify(post),
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // });
+
+  if (!response) {
     throw response;
   }
   return null;
 }
+
+export const useReactQuery = (key: string, url: string, options?: Omit<UseQueryOptions<any>, 'queryKey' | 'queryFn'>) => useQuery([key], () => request({ url }), options);

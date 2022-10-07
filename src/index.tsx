@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import { theme } from 'theme';
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       suspense: true,

@@ -1,19 +1,22 @@
-import { Suspense } from 'react';
-import { useLoaderData, defer, Await, Outlet } from 'react-router-dom';
+import { defer, Outlet } from 'react-router-dom';
 import { Box } from '@mantine/core';
-import { getSlowPosts } from 'apis';
+
+import { getSlowPosts, useReactQuery } from 'apis';
 import Posts from 'components/Posts';
 
-function DeferredPostListsPage() {
-  const loaderData = useLoaderData();
+import { QUERY_KEY } from 'apis/constants/queryKey';
+import AsyncBoundary from 'components/controller/AsyncBoundary';
+import PostsSkeleton from './AsyncHandler/PostSkeleton';
+import PostsErrorHandler from './AsyncHandler/PostsErrorFallback';
 
+function DeferredPostListsPage() {
+  const { data } = useReactQuery(QUERY_KEY.posts, '/posts');
+  console.log('dta--->', data);
   return (
     <Box sx={{ display: 'flex' }}>
-      <Suspense fallback={<p>Loading...</p>}>
-        <Await resolve={loaderData.posts} errorElement={<p>Error loading blog posts.</p>}>
-          {loadedPosts => <Posts blogPosts={loadedPosts} />}
-        </Await>
-      </Suspense>
+      <AsyncBoundary pendingFallback={<PostsSkeleton />} rejectFallback={PostsErrorHandler}>
+        <Posts blogPosts={data} />
+      </AsyncBoundary>
       <Outlet />
     </Box>
   );

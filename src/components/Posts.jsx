@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import classes from './Posts.module.css';
 
 function Posts({ blogPosts }) {
+  // throw new Error('test');
   return (
     <List
       className={classes.posts}

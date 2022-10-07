@@ -3,6 +3,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { QueryErrorResetBoundary } from 'react-query';
 import type { ErrorBoundaryPropsWithComponent } from 'react-error-boundary';
 import defualtErrorHandler from 'utils/error/defualtErrorHandler';
+import DeferredComponent from './DeferredComponent';
 
 interface AsyncBoundaryProps extends Partial<ErrorBoundaryPropsWithComponent> {
   children: React.ReactNode;
@@ -15,7 +16,7 @@ function AsyncBoundary({ pendingFallback, children, rejectFallback, onError, ...
     <QueryErrorResetBoundary>
       {({ reset }) => (
         <ErrorBoundary {...errorBoundaryProps} FallbackComponent={rejectFallback} onError={onError || defualtErrorHandler} onReset={reset}>
-          <Suspense fallback={pendingFallback}>{children}</Suspense>
+          <Suspense fallback={<DeferredComponent>{pendingFallback}</DeferredComponent>}>{children}</Suspense>
         </ErrorBoundary>
       )}
     </QueryErrorResetBoundary>
