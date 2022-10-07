@@ -20,7 +20,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
       <Route index element={<WelcomePage />} />
       <Route path="/blog" element={<BlogLayout />}>
-        <Route element={<DeferredPostListsPage />} loader={deferredBlogPostsLoader}>
+        <Route element={<DeferredPostListsPage />}>
           <Route index element={<DefaultPostDetailPage />} />
           <Route path=":id" element={<PostDetailPage />} loader={blogPostLoader} />
         </Route>
