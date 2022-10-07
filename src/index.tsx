@@ -1,12 +1,12 @@
 import React from 'react';
-import { useLocation, createRoutesFromChildren, useNavigationType, matchRoutes, Routes } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { NotificationsProvider } from '@mantine/notifications';
 import { MantineProvider } from '@mantine/core';
-
+import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
+import { theme } from 'theme';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,7 +21,7 @@ const root = ReactDOM.createRoot(document.getElementById('kich') as HTMLElement)
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <MantineProvider withGlobalStyles withNormalizeCSS>
+      <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
         <NotificationsProvider>
           <App />
         </NotificationsProvider>

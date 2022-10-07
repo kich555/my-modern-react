@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 
-const DeferredComponent = ({ children }: { children: ReactNode }) => {
+export default function DeferredComponent({ children }: { children: ReactNode }) {
   const [isDeferred, setIsDeferred] = useState(false);
   useEffect(() => {
     // 200ms 지난 후 fallback component render
@@ -15,4 +15,4 @@ const DeferredComponent = ({ children }: { children: ReactNode }) => {
     return null;
   }
   return <>{children}</>;
-};
+}

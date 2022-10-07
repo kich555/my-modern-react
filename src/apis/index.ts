@@ -97,4 +97,5 @@ export async function savePost(data: FormData) {
   if (!response.ok) {
     throw response;
   }
+  return null;
 }
