@@ -103,5 +103,3 @@ export async function savePost(data: FormData) {
   }
   return null;
 }
-
-export const useReactQuery = (key: string, url: string, options?: Omit<UseQueryOptions<any>, 'queryKey' | 'queryFn'>) => useQuery([key], () => request({ url }), options);

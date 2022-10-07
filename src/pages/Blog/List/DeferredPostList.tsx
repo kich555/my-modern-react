@@ -1,16 +1,16 @@
 import { defer, Outlet } from 'react-router-dom';
 import { Box } from '@mantine/core';
 
-import { getSlowPosts, useReactQuery } from 'apis';
+import { getSlowPosts } from 'apis';
 import Posts from 'components/Posts';
-
 import { QUERY_KEY } from 'apis/constants/queryKey';
 import AsyncBoundary from 'components/controller/AsyncBoundary';
 import PostsSkeleton from './AsyncHandler/PostSkeleton';
 import PostsErrorHandler from './AsyncHandler/PostsErrorFallback';
+import { useReactQuery } from 'apis/useReactQuery';
 
 function DeferredPostListsPage() {
-  const { data } = useReactQuery(QUERY_KEY.posts, '/posts');
+  const { data } = useReactQuery({ table: QUERY_KEY.posts, id: '8' }, '/posts');
   console.log('dta--->', data);
   return (
     <Box sx={{ display: 'flex' }}>
