@@ -8,6 +8,8 @@ import PostsErrorHandler from '../List/AsyncHandler/PostsErrorFallback';
 
 // import BlogPost from 'pages/Blog/Detail/components/BlogPost';
 
+
+
 const BlogPost = lazy(() => import('pages/Blog/Detail/components/BlogPost'));
 function PostDetailPage() {
   const id = useParams().id;
@@ -21,3 +23,4 @@ function PostDetailPage() {
 }
 
 export default PostDetailPage;
+

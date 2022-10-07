@@ -1,16 +1,6 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-
 import { lazy, Suspense } from 'react';
-import AsyncBoundary from 'components/controller/AsyncBoundary';
-//page
-// import RootLayout from 'pages/RootLayout';
-// import ErrorPage from 'pages/Error/Error';
-// import DefaultPostDetailPage from 'pages/Blog/Detail/DefaultPostDetail';
-// import BlogLayout from 'pages/Blog/BlogLayout';
-// import DeferredPostListsPage from 'pages/Blog/List/DeferredPostList';
-// import NewPostPage from 'pages/NewPost/NewPost';
-// import PostDetailPage from 'pages/Blog/Detail/PostDetail';
-// import WelcomePage from 'pages/Home/Welcome';
+import { LoadingOverlay } from '@mantine/core';
 
 const RootLayout = lazy(() => import('pages/RootLayout'));
 const DefaultPostDetailPage = lazy(() => import('pages/Blog/Detail/DefaultPostDetail'));
@@ -22,7 +12,7 @@ const WelcomePage = lazy(() => import('pages/Home/Welcome'));
 
 const Router = () => (
   <BrowserRouter>
-    <Suspense fallback={<div>loading</div>}>
+    <Suspense fallback={<LoadingOverlay visible={true} />}>
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<WelcomePage />} />
