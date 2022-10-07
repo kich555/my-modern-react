@@ -8,7 +8,6 @@ function BlogPostsPage() {
 
   return (
     <>
-      <h1>Our Blog Posts</h1>
       <Posts blogPosts={loaderData} />
     </>
   );

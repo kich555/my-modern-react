@@ -1,4 +1,5 @@
 import { useLoaderData } from 'react-router-dom';
+import { Container } from '@mantine/core';
 import { getPost } from 'apis';
 
 import BlogPost from '../components/BlogPost';
@@ -8,10 +9,10 @@ function PostDetailPage() {
   const postData = useLoaderData();
 
   return (
-    <>
+    <Container>
       <BlogPost title={postData.title} text={postData.body} />
       <NewsletterSignup />
-    </>
+    </Container>
   );
 }
 

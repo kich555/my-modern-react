@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import { useLoaderData, defer, Await } from 'react-router-dom';
-import { Title } from '@mantine/core';
+import { useLoaderData, defer, Await, Outlet } from 'react-router-dom';
+import { Box } from '@mantine/core';
 import { getSlowPosts } from 'apis';
 import Posts from 'components/Posts';
 
@@ -8,14 +8,14 @@ function DeferredBlogPostsPage() {
   const loaderData = useLoaderData();
 
   return (
-    <>
-      <Title align="center">Our Blog Posts</Title>
+    <Box sx={{ display: 'flex' }}>
       <Suspense fallback={<p>Loading...</p>}>
         <Await resolve={loaderData.posts} errorElement={<p>Error loading blog posts.</p>}>
           {loadedPosts => <Posts blogPosts={loadedPosts} />}
         </Await>
       </Suspense>
-    </>
+      <Outlet />
+    </Box>
   );
 }
 
