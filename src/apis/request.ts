@@ -13,7 +13,6 @@ interface RequestConfig extends AxiosRequestConfig {
 
 const defaultConfig: RequestConfig = {
   baseURL: process.env.REACT_APP_API_DOMAIN,
-  // timeout: 2500,
   withCredentials: true,
   headers: {
     'Access-Control-Allow-Origin': '*',
@@ -63,16 +62,9 @@ const onResponseError = (error: AxiosError) => {
 };
 
 /**
- * @author kich555
- * @link https://blog.liufashi.top/2022/05/21/ts-axios/
- * @description 위 링크를 기반으로 조금씩 손본 custom request입니다.
- *
- * 구체적으로 타입을 보다 더 구체화하였고, 나만의 custom 타입, 로직들을 추가하였습니다.
- *
- * 긴 명령형 구조인게 마음에 들진 않지만, 현재까지는 특별한 개선방안이 떠오르지 않습니다
- *
- * 타입 구체화 등 리팩토링 할 부분들이 남아있으나,
- * 초기 기획과 구현은 끝났음으로 현재 버전을 초안으로 결정합니다.
+ * @author 김경현
+ 
+ * @description 재사용성을 중점에 둔 custom request입니다.
  *
  */
 const request = ({ method, url, data, config, specificInterceptor }: RequestParams): any => {
@@ -80,7 +72,6 @@ const request = ({ method, url, data, config, specificInterceptor }: RequestPara
   const instance: CustomInstance = axiosClient.create(finalConfig);
 
   function onRequest(config: AxiosRequestConfig<ResponseTime>) {
-    console.info(`[request] [${JSON.stringify(config)}]`);
     if (config.method === 'get') {
       config.timeout = 12000;
     }
@@ -95,9 +86,11 @@ const request = ({ method, url, data, config, specificInterceptor }: RequestPara
   }
 
   function onResponse(response: AxiosResponse<ResponseData, StringifiedResponseTime>) {
-    // RTT를 기록하여 sentry or Monitoring service에 기록 (UX 최적화를 위한 데이터 수집)
-    // default = session storage에 저장
-
+    /**
+    @author 김경현
+    @description RTT를 기록하여 sentry or Monitoring service에 기록 (UX 최적화를 위한 데이터 수집)
+    sentry와같은 모니터링 툴을 사용할 수 없으니 기본적으로 = session storage에 저장해보았습니다.
+     */
     if (response.config.data && response.config.baseURL) {
       const { data, baseURL } = response.config;
       const duration = getRTT(data);
@@ -105,11 +98,11 @@ const request = ({ method, url, data, config, specificInterceptor }: RequestPara
     }
 
     /**
-    @author kich555
+    @author 김경현
     @description 실질적인 업무레벨 api response에서는 row data를 따로 wrapping 할 Response객체가 있겠지만, 이 프로젝트에서 default tester 로 사용하고 있는 open source api에서는 row data를 바로 반환하므로 아래의 조건식을 주석처리 했습니다.
     */
     console.log('response', response);
-    if (response.status === 200 || response.data.success) {
+    if (response.status === (200 || 204) || response.data.success) {
       if (specificInterceptor?.response && typeof specificInterceptor.response === 'function') {
         return specificInterceptor.response(response.data);
       }
