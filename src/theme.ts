@@ -1,4 +1,8 @@
-import { MantineThemeOverride } from '@mantine/core';
+import { ListItemProps, MantineThemeOverride } from '@mantine/core';
+
+const ListDefaultProps: Partial<ListItemProps> = {
+  styles: { itemWrapper: { width: '100%' } },
+};
 
 export const theme: MantineThemeOverride = {
   colors: {
@@ -15,4 +19,8 @@ export const theme: MantineThemeOverride = {
     // -moz-osx-font-smoothing: grayscale,
     // -webkit-text-size-adjust: 100%,
   }),
+
+  components: {
+    List: { defaultProps: ListDefaultProps },
+  },
 };
