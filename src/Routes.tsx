@@ -1,5 +1,5 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
-import PostDetailLayout from 'pages/PostDetailLayout';
+import DefaultPostPage from 'pages/DefaultPostPage';
 
 import BlogLayout from './pages/BlogLayout';
 import BlogPostsPage, { loader as blogPostsLoader } from './pages/BlogPosts';
@@ -17,11 +17,12 @@ const router = createBrowserRouter(
       <Route index element={<WelcomePage />} />
       <Route path="/blog" element={<BlogLayout />}>
         <Route element={<DeferredBlogPostsPage />} loader={deferredBlogPostsLoader}>
-          <Route index element={<PostDetailLayout />} />
+          <Route index element={<DefaultPostPage />} />
           <Route path=":id" element={<PostDetailPage />} loader={blogPostLoader} />
         </Route>
       </Route>
       <Route path="/blog/new" element={<NewPostPage />} action={newPostAction} />
+      {/* <Route path="/newsletter" action={newsletterAction} /> */}
     </Route>,
   ),
 );
