@@ -36,7 +36,10 @@ interface RequestParams {
 
 const onRequestError = (error: AxiosError): Promise<AxiosError> => {
   console.log('request', error.response?.status);
-  // if(error.code)
+
+  if (error.request) {
+    // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+  }
   return Promise.reject(error);
 };
 
@@ -45,7 +48,10 @@ const onResponseError = (error: AxiosError) => {
   console.log('status', typeof error.code, error.code);
   console.log('response', error.response?.status);
   if (error.response) {
-    console.log('is in??');
+    // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+    if (error.response.status >= 500) {
+      // 예상치 못한 에러입니다. global로 throw 합니다.
+    }
   } else {
     console.log('it does not have response', error.request);
   }
