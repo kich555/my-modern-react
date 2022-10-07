@@ -32,7 +32,12 @@ export function getRTT(data: StringifiedResponseTime) {
 }
 
 export function handleUpdateRTT({ duration, baseURL }: HandleUpdateRTTParams) {
-  const rttRecords: number[] = getItem(`${baseURL}_RTTRecords`);
+  const stringifiedRttRecords = sessionStorage.getItem(`${baseURL}_RTTRecords`);
+  if (stringifiedRttRecords === null) {
+    return sessionStorage.setItem(`${baseURL}_RTTRecords`, JSON.stringify([duration]));
+  }
+  const rttRecords: number[] = JSON.parse(stringifiedRttRecords);
+  console.log('rttRecords', rttRecords);
   rttRecords.push(duration);
-  return setItem(`${baseURL}_RTTRecords`, rttRecords);
+  return sessionStorage.setItem(`${baseURL}_RTTRecords`, JSON.stringify(rttRecords));
 }

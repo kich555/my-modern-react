@@ -1,8 +1,7 @@
-export const getItem = (session, data) => {
+export const getItem = (session) => {
+  console.log('session',session)
   const stringifiedItem = sessionStorage.getItem(session)
-  if(stringifiedItem === undefined ) {
-    return sessionStorage.setItem(session, JSON.stringify(data));
-  }
+  console.log('stringifiedItem',stringifiedItem)
   return JSON.parse(stringifiedItem)
 };
 

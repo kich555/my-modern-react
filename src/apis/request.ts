@@ -91,11 +91,11 @@ const request = ({ method, url, data, config, specificInterceptor }: RequestPara
     @description RTT를 기록하여 sentry or Monitoring service에 기록 (UX 최적화를 위한 데이터 수집)
     sentry와같은 모니터링 툴을 사용할 수 없으니 기본적으로 = session storage에 저장해보았습니다.
      */
-    // if (response.config.data && response.config.baseURL) {
-    //   const { data, baseURL } = response.config;
-    //   const duration = getRTT(data);
-    //   duration && handleUpdateRTT({ duration, baseURL });
-    // }
+    if (response.config.data && response.config.baseURL) {
+      const { data, baseURL } = response.config;
+      const duration = getRTT(data);
+      duration && handleUpdateRTT({ duration, baseURL });
+    }
 
     /**
     @author 김경현

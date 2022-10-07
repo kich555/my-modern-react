@@ -1,6 +1,7 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import { lazy, Suspense } from 'react';
+import AsyncBoundary from 'components/controller/AsyncBoundary';
 //page
 // import RootLayout from 'pages/RootLayout';
 // import ErrorPage from 'pages/Error/Error';
@@ -28,6 +29,7 @@ const Router = () => (
           <Route path="/blog" element={<BlogLayout />}>
             <Route element={<DeferredPostListsPage />}>
               <Route index element={<DefaultPostDetailPage />} />
+
               <Route path=":id" element={<PostDetailPage />} />
             </Route>
           </Route>

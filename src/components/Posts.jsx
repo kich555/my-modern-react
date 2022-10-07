@@ -1,9 +1,11 @@
 import { List, Title } from '@mantine/core';
 import { Link } from 'react-router-dom';
+import { useReactQuery } from 'apis/useReactQuery';
 import classes from './Posts.module.css';
+import { QUERY_KEY } from 'apis/constants/queryKey';
 
-function Posts({ blogPosts }) {
-  // throw new Error('test');
+function Posts() {
+  const { data } = useReactQuery({ table: QUERY_KEY.posts, id: '8' }, '/posts');
   return (
     <List
       className={classes.posts}
@@ -15,7 +17,7 @@ function Posts({ blogPosts }) {
       p={16}
       mt={36}
     >
-      {blogPosts.map(post => (
+      {data.map(post => (
         <List.Item key={post.id}>
           <Link to={post.id.toString()}>
             <Title order={2} lineClamp={1}>

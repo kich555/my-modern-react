@@ -10,7 +10,7 @@ export default function DeferredComponent({ children }: { children: ReactNode })
   const { REACT_APP_API_DOMAIN } = process.env;
   const rttRecords: number[] = getItem(`${REACT_APP_API_DOMAIN}_RTTRecords`);
   let rttAverage: number;
-
+  console.log('rttRecords', rttRecords);
   /**
    * 수집된 정보가 100개 이하일 경우
    * 표준편차가 클 수 있다고 판단하여 함수를 진행하지 않고,
