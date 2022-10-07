@@ -72,7 +72,7 @@ export async function getSlowPosts() {
   return response.json();
 }
 
-export async function getPost(id: string) {
+export async function getPost(id: string): Promise<ResponseData> {
   return request({ url: `/posts/${id}` });
 }
 

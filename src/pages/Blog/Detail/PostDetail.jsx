@@ -1,25 +1,24 @@
-import { useLoaderData } from 'react-router-dom';
 import { Container } from '@mantine/core';
-import { getPost } from 'apis';
 
-import BlogPost from 'components/BlogPost';
-import NewsletterSignup from 'components/NewsletterSignup';
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
+import BlogPost from 'pages/Blog/Detail/components/BlogPost';
+import { getPost } from 'apis';
+import AsyncBoundary from 'components/controller/AsyncBoundary';
+import PostsSkeleton from '../List/AsyncHandler/PostSkeleton';
+import PostsErrorHandler from '../List/AsyncHandler/PostsErrorFallback';
 
 function PostDetailPage() {
-  const postData = useLoaderData();
-
+  const id = useParams().id;
+  const { data } = useQuery([], () => getPost(id));
+  console.log('datadatadata', data);
   return (
     <Container>
-      <BlogPost title={postData.title} text={postData.body} />
-      <NewsletterSignup />
+      <AsyncBoundary pendingFallback={<PostsSkeleton />} rejectFallback={PostsErrorHandler}>
+        <BlogPost title={data.title} text={data.body} />
+      </AsyncBoundary>
     </Container>
   );
 }
 
 export default PostDetailPage;
-
-export function loader({ params }) {
-  const postId = params.id;
-
-  return getPost(postId);
-}

@@ -4,7 +4,6 @@ import { Outlet } from 'react-router-dom';
 export default function BlogLayout() {
   return (
     <>
-      {/* <BlogActions /> */}
       <Title align="center" color="#fcb66b">
         Our Blog Posts
       </Title>

@@ -36,8 +36,3 @@ export function handleUpdateRTT({ duration, baseURL }: HandleUpdateRTTParams) {
   rttRecords.push(duration);
   return setItem(`${baseURL}_RTTRecords`, rttRecords);
 }
-
-// export function handleRttUpdate() {
-
-//     return
-// }

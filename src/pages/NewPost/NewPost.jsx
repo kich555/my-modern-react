@@ -1,35 +1,29 @@
-import { redirect, useActionData, useNavigate, useNavigation } from 'react-router-dom';
-import NewPostForm from '../../components/NewPostForm';
-import { savePost } from 'apis';
+import { Box, Button, Center } from '@mantine/core';
+import { Form } from 'react-router-dom';
+
+import classes from 'pages/NewPost/NewPostForm.module.css';
 
 function NewPostPage() {
-  const data = useActionData();
-
-  const navigation = useNavigation();
-  console.log(navigation.state);
-
-  const navigate = useNavigate();
-
-  function cancelHandler() {
-    navigate('/blog');
-  }
-
   return (
     <>
-      {data && data.isError && <p>{data.message}</p>}
-      <NewPostForm onCancel={cancelHandler} submitting={navigation.state === 'submitting'} />
+      <form className={classes.form} action="/blog/new" method="post">
+        <fieldset>
+          <label htmlFor="title">Title</label>
+          <input id="title" type="text" name="title" required minLength={5} />
+        </fieldset>
+        <fieldset>
+          <label htmlFor="text">Post Text</label>
+          <textarea id="text" name="post-text" required minLength={10} rows={5}></textarea>
+        </fieldset>
+        <Box align="center" mt={20}>
+          {/* <button type="button" onClick={onCancel} disabled={submitting}>
+            Cancel
+          </button>
+          <button disabled={submitting}>{submitting ? 'Submitting...' : 'Create Post'}</button> */}
+        </Box>
+      </form>
     </>
   );
 }
 
 export default NewPostPage;
-
-export async function action({ request }) {
-  const data = await request.formData();
-
-  const validationError = await savePost(data);
-  if (validationError) {
-    return validationError;
-  }
-  return redirect('/blog');
-}
