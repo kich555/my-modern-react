@@ -1,8 +1,8 @@
 import { Box, Container } from '@mantine/core';
-import BlogPost from '../components/BlogPost';
-import NewsletterSignup from '../components/NewsletterSignup';
+import BlogPost from 'components/BlogPost';
+import NewsletterSignup from 'components/NewsletterSignup';
 
-function DefaultPostPage() {
+function DefaultPostDetailPage() {
   const defaultTitle = 'Hi there ! Please pick a post you want to read!';
   const defaultText = '';
 
@@ -16,4 +16,4 @@ function DefaultPostPage() {
   );
 }
 
-export default DefaultPostPage;
+export default DefaultPostDetailPage;

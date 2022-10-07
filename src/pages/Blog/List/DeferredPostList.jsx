@@ -4,7 +4,7 @@ import { Box } from '@mantine/core';
 import { getSlowPosts } from 'apis';
 import Posts from 'components/Posts';
 
-function DeferredBlogPostsPage() {
+function DeferredPostListsPage() {
   const loaderData = useLoaderData();
 
   return (
@@ -19,7 +19,7 @@ function DeferredBlogPostsPage() {
   );
 }
 
-export default DeferredBlogPostsPage;
+export default DeferredPostListsPage;
 
 export async function loader() {
   return defer({ posts: getSlowPosts() });

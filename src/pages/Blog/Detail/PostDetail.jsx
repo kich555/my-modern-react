@@ -2,8 +2,8 @@ import { useLoaderData } from 'react-router-dom';
 import { Container } from '@mantine/core';
 import { getPost } from 'apis';
 
-import BlogPost from '../components/BlogPost';
-import NewsletterSignup from '../components/NewsletterSignup';
+import BlogPost from 'components/BlogPost';
+import NewsletterSignup from 'components/NewsletterSignup';
 
 function PostDetailPage() {
   const postData = useLoaderData();

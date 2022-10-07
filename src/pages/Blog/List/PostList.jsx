@@ -3,7 +3,7 @@ import { getPosts } from 'apis';
 import { sleep } from 'utils/sleep';
 import Posts from 'components/Posts';
 
-function BlogPostsPage() {
+function PostListPage() {
   const loaderData = useLoaderData();
 
   return (
@@ -13,7 +13,7 @@ function BlogPostsPage() {
   );
 }
 
-export default BlogPostsPage;
+export default PostListPage;
 
 export async function loader({ request, params }) {
   // await sleep(2000);

@@ -1,5 +1,5 @@
 import { redirect, useActionData, useNavigate, useNavigation } from 'react-router-dom';
-import NewPostForm from '../components/NewPostForm';
+import NewPostForm from '../../components/NewPostForm';
 import { savePost } from 'apis';
 
 function NewPostPage() {

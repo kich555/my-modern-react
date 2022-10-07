@@ -1,9 +1,7 @@
-import { Box, Container, Title } from '@mantine/core';
+import { Container, Title } from '@mantine/core';
 import { Outlet } from 'react-router-dom';
 
-import BlogActions from '../components/BlogActions';
-
-function BlogLayout() {
+export default function BlogLayout() {
   return (
     <>
       {/* <BlogActions /> */}
@@ -16,5 +14,3 @@ function BlogLayout() {
     </>
   );
 }
-
-export default BlogLayout;
