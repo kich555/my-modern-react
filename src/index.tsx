@@ -8,6 +8,15 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import { theme } from 'theme';
 
+import { worker } from './mocks/worker';
+if (process.env.NODE_ENV === 'development') {
+  worker.start();
+}
+
+fetch('/todos')
+  .then(response => response.json())
+  .then(data => console.log(data));
+
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

@@ -3,13 +3,10 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 //page
 import RootLayout from 'pages/RootLayout';
 import ErrorPage from 'pages/Error/Error';
-
 import DefaultPostDetailPage from 'pages/Blog/Detail/DefaultPostDetail';
-
 import BlogLayout from 'pages/Blog/BlogLayout';
 import BlogPostsPage, { loader as blogPostsLoader } from 'pages/Blog/List/PostList';
 import DeferredPostListsPage, { loader as deferredBlogPostsLoader } from 'pages/Blog/List/DeferredPostList';
-
 import NewPostPage, { action as newPostAction } from 'pages/NewPost/NewPost';
 import { action as newsletterAction } from 'pages/Blog/Detail/Newsletter';
 import PostDetailPage, { loader as blogPostLoader } from 'pages/Blog/Detail/PostDetail';

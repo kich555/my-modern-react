@@ -2,7 +2,7 @@ import axiosClient from 'axios';
 import { omitBy } from 'lodash-es';
 import type { AxiosError, AxiosResponse, AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 
-import { ApiError, API_DOMAIN, CustomInstance, ResponseTime, StringifiedResponseTime } from './config';
+import { ApiError, CustomInstance, ResponseTime, StringifiedResponseTime } from './config';
 import { ResponseData } from 'apis';
 import { HTTP_ERROR_STATUS } from './constants/status';
 import { getRTT, handleUpdateRTT } from './RTTHandler';
@@ -12,7 +12,7 @@ interface RequestConfig extends AxiosRequestConfig {
 }
 
 const defaultConfig: RequestConfig = {
-  baseURL: API_DOMAIN,
+  baseURL: process.env.REACT_APP_API_DOMAIN,
   // timeout: 2500,
   withCredentials: true,
   headers: {

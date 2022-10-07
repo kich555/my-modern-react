@@ -1,7 +1,7 @@
 import type { AxiosInstance, AxiosInterceptorManager, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ResponseData } from 'apis';
 
-export const API_DOMAIN = 'https://jsonplaceholder.typicode.com';
+// export const API_DOMAIN = 'https://jsonplaceholder.typicode.com';
 
 export class ApiError extends Error {
   data: ResponseData;
