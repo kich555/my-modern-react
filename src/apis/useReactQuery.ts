@@ -12,7 +12,5 @@ interface QueryKey {
 export const useReactQuery = (queryKey: QueryKey, url: string, options?: Omit<UseQueryOptions<any>, 'queryKey' | 'queryFn'>) => {
   const keyArray = values(queryKey);
 
-  // const getData = async (): Promise<ResponseData> => request({ url });
-
   return useQuery(keyArray, (): Promise<ResponseData> => request({ url }), options);
 };

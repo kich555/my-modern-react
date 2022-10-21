@@ -17,9 +17,6 @@ const defaultConfig: RequestConfig = {
   headers: {
     'Access-Control-Allow-Origin': '*',
   },
-  // validateStatus: function (status) {
-  //   return status < 500;
-  // },
 };
 
 interface RequestParams {
@@ -101,7 +98,7 @@ const request = ({ method, url, data, config, specificInterceptor }: RequestPara
     @author 김경현
     @description 실질적인 업무레벨 api response에서는 row data를 따로 wrapping 할 Response객체가 있겠지만, 이 프로젝트에서 default tester 로 사용하고 있는 open source api에서는 row data를 바로 반환하므로 아래의 조건식을 주석처리 했습니다.
     */
-    console.log('response', response);
+
     if (response.status === (200 || 204) || response.data.success) {
       if (specificInterceptor?.response && typeof specificInterceptor.response === 'function') {
         return specificInterceptor.response(response.data);
