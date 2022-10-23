@@ -68,7 +68,7 @@
     "noImplicitOverride": true,
     "allowUnreachableCode": false,
     // "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "jsxImportSource": "@emotion/react"
   }
 }

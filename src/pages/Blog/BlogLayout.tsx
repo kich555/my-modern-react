@@ -7,7 +7,7 @@ export default function BlogLayout() {
       <Title align="center" color="#fcb66b">
         Our Blog Posts
       </Title>
-      <Container size="xl" mx={24} mt={12} align="center">
+      <Container size="xl" mx={24} mt={12}>
         <Outlet />
       </Container>
     </>

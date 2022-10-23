@@ -1,6 +1,3 @@
-import { Box, Button, Center } from '@mantine/core';
-import { Form } from 'react-router-dom';
-
 import classes from 'pages/NewPost/NewPostForm.module.css';
 
 function NewPostPage() {
@@ -15,12 +12,6 @@ function NewPostPage() {
           <label htmlFor="text">Post Text</label>
           <textarea id="text" name="post-text" required minLength={10} rows={5}></textarea>
         </fieldset>
-        <Box align="center" mt={20}>
-          {/* <button type="button" onClick={onCancel} disabled={submitting}>
-            Cancel
-          </button>
-          <button disabled={submitting}>{submitting ? 'Submitting...' : 'Create Post'}</button> */}
-        </Box>
       </form>
     </>
   );

@@ -1,6 +1,6 @@
 import { List, Skeleton } from '@mantine/core';
 
-import classes from 'components/Posts.module.css';
+import classes from '../Posts.module.css';
 
 function PostsSkeleton() {
   const fakeArray = [1, 2, 3, 4, 5, 6, 7];
