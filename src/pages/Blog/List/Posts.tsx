@@ -1,11 +1,10 @@
 import { List, Title } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { useReactQuery } from 'apis/useReactQuery';
 import classes from './Posts.module.css';
-import { QUERY_KEY } from 'apis/constants/queryKey';
+import { useAllPostsQuery } from '../apis';
 
 function Posts() {
-  const { data } = useReactQuery({ table: QUERY_KEY.posts, id: '8' }, '/posts');
+  const data = useAllPostsQuery();
   return (
     <List
       className={classes.posts}
