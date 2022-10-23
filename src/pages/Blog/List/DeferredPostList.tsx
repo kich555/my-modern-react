@@ -5,7 +5,7 @@ import AsyncBoundary from 'components/controller/AsyncBoundary';
 import PostsSkeleton from './AsyncHandler/PostSkeleton';
 import PostsErrorHandler from './AsyncHandler/PostsErrorFallback';
 
-const Posts = lazy(() => import('components/Posts'));
+const Posts = lazy(() => import('./Posts'));
 
 function DeferredPostListsPage() {
   return (
