@@ -6,23 +6,24 @@ import { prefetchTodos } from './prefetch/apis';
 
 function MainNavigation() {
   const handlePrefetch = () => prefetchTodos();
+  const { header, active } = classes;
 
   return (
-    <header className={classes.header}>
+    <header className={header}>
       <nav>
         <List>
           <List.Item>
-            <NavLink to="/" className={({ isActive }) => (isActive ? classes.active : undefined)} end>
+            <NavLink to="/" className={({ isActive }) => (isActive ? active : '')} end>
               Home
             </NavLink>
           </List.Item>
           <List.Item onMouseEnter={handlePrefetch}>
-            <NavLink to="/blog" className={({ isActive }) => (isActive ? classes.active : undefined)} end>
+            <NavLink to="/blog" className={({ isActive }) => (isActive ? active : '')} end>
               List
             </NavLink>
           </List.Item>
           <List.Item>
-            <NavLink to="/blog/new" className={({ isActive }) => (isActive ? classes.active : undefined)} end>
+            <NavLink to="/blog/new" className={({ isActive }) => (isActive ? active : '')} end>
               Post
             </NavLink>
           </List.Item>

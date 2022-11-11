@@ -1,5 +1,4 @@
 import invariant from 'tiny-invariant';
-import { useQuery, UseQueryOptions } from 'react-query';
 import { sleep } from 'utils/sleep';
 import request from './request';
 
@@ -70,10 +69,6 @@ export async function getSlowPosts() {
     throw new Response('Failed to fetch posts.', { status: 500 });
   }
   return response.json();
-}
-
-export async function getPost(id: string) {
-  return request({ url: `/posts/${id}` });
 }
 
 export async function savePost(data: FormData) {

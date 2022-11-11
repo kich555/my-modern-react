@@ -1,9 +1,10 @@
 import { List, Title } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import classes from './Posts.module.css';
+import { useAllPostsQuery } from '../apis';
 
-function Posts({ blogPosts }) {
-  // throw new Error('test');
+function Posts() {
+  const data = useAllPostsQuery();
   return (
     <List
       className={classes.posts}
@@ -15,7 +16,7 @@ function Posts({ blogPosts }) {
       p={16}
       mt={36}
     >
-      {blogPosts.map(post => (
+      {data.map(post => (
         <List.Item key={post.id}>
           <Link to={post.id.toString()}>
             <Title order={2} lineClamp={1}>

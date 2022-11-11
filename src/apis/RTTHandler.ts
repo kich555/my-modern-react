@@ -1,3 +1,5 @@
+import { mean, round } from 'lodash-es';
+import { getItem, setItem } from 'utils/sessionStorage';
 import { StringifiedResponseTime } from './config';
 
 type newData = Record<'startTime' | 'endTime', Date>;
@@ -16,7 +18,6 @@ interface HandleUpdateRTTParams {
     why sessionStorage? 
 
     1. 지표를 logging하는 서비스에 권한을 위임한다면 더 좋겠지만, 해당 작업이 과분하다 느껴질 때
-    2. 만약 유저의 접속환경이 일정하다는 가정이 있다면 ( 특정 환경, 특정 시간대, 특정 네트워크에서 주로 사용할 서비스라면 )
     Local storage를 사용해도 괜찮겠지만, 그렇지 않을 경우 오히려 지표에 혼란을 가져올 수 있을 것 같아서 session storage를 사용
     3. 일단 테스트해보자
     */
@@ -40,8 +41,3 @@ export function handleUpdateRTT({ duration, baseURL }: HandleUpdateRTTParams) {
   rttRecords.push(duration);
   return sessionStorage.setItem(`${baseURL}_RTTRecords`, JSON.stringify(rttRecords));
 }
-
-// export function handleRttUpdate() {
-
-//     return
-// }

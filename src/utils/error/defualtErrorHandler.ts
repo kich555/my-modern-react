@@ -142,18 +142,18 @@ export default function defualtErrorHandler(error: unknown) {
   const { error: specificError, type } = typedError;
 
   // // 에러 타입에 따른 타입가드
-  // if (type === 'axios-error') {
-  //   console.log('test', specificError.response?.status);
-  //   return console.log("It's axios error");
-  // }
-  // if (type === 'api-throw-error') {
-  //   return console.log("It's api error");
-  // }
-  // if (type === 'stock-error') {
-  //   return console.log("It's stock error", specificError);
-  // }
-  // if (type === 'unknown-error') {
-  //   return console.log("It's unknown error");
-  // }
+  if (type === 'axios-error') {
+    console.log('test', specificError.response?.status);
+    return console.log("It's axios error");
+  }
+  if (type === 'api-throw-error') {
+    return console.log("It's api error");
+  }
+  if (type === 'stock-error') {
+    return console.log("It's stock error", specificError);
+  }
+  if (type === 'unknown-error') {
+    return console.log("It's unknown error");
+  }
   return typedError;
 }

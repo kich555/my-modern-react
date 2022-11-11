@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Box, Container } from '@mantine/core';
+import { Box } from '@mantine/core';
 import MainNavigation from '../components/Navigation/MainNavigation';
 
 function RootLayout() {

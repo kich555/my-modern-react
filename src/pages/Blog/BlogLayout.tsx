@@ -4,11 +4,10 @@ import { Outlet } from 'react-router-dom';
 export default function BlogLayout() {
   return (
     <>
-      {/* <BlogActions /> */}
       <Title align="center" color="#fcb66b">
         Our Blog Posts
       </Title>
-      <Container size="xl" mx={24} mt={12} align="center">
+      <Container size="xl" mx={24} mt={12}>
         <Outlet />
       </Container>
     </>
